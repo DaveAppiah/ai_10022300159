@@ -1,0 +1,12 @@
+# ai_10022300159 - David Owusu Appiah - 10022300159
+groq>=0.9.0
+streamlit>=1.35.0
+sentence-transformers>=2.7.0
+faiss-cpu>=1.8.0
+numpy>=1.26.0
+pandas>=2.2.0
+PyMuPDF>=1.24.0
+requests>=2.31.0
+rank-bm25>=0.2.2
+python-dotenv>=1.0.0
+scikit-learn>=1.4.0

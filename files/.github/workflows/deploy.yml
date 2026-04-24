@@ -1,0 +1,29 @@
+name: Deploy Prep
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Verify Streamlit app
+        run: |
+          python -c "from rag_pipeline import RAGPipeline; print('✅ RAGPipeline imports successfully')"
+          streamlit --version
+      - name: Check data files
+        run: |
+          if [ -d "data" ]; then echo "✅ Data directory exists"; else echo "⚠️ No data directory found"; fi
+      - name: Validate env template
+        run: |
+          if [ -f ".env.example" ]; then echo "✅ .env.example exists"; else echo "❌ .env.example missing"; exit 1; fi
